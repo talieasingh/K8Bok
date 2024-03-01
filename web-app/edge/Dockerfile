@@ -1,11 +1,7 @@
-FROM centos:centos7
+# Can't be from a slim image as needed tools might be missing
+FROM node:current-alpine
 
 LABEL MAINTAINER=nigelpoulton@hotmail.com
-
-# Install Node etc...
-RUN yum -y update; yum clean all
-RUN yum -y install epel-release; yum clean all
-RUN yum -y install nodejs npm; yum clean all
 
 # Copy source code to /src in container
 COPY . /src
@@ -18,3 +14,4 @@ EXPOSE 8080
 
 # Run this command (starts the app) when the container starts
 CMD cd /src && node ./app.js
+

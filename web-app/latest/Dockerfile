@@ -1,11 +1,7 @@
-FROM centos:centos7
+# Can't be from slim image as need tools for some of the examples
+FROM node:current-alpine
 
 LABEL MAINTAINER=nigelpoulton@hotmail.com
-
-# Install Node etc...
-RUN yum -y update; yum clean all
-RUN yum -y install epel-release; yum clean all
-RUN yum -y install nodejs npm; yum clean all
 
 # Copy source code to /src in container
 COPY . /src
